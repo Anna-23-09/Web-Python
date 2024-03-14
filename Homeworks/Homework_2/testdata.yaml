@@ -1,0 +1,10 @@
+address: http://test-stand.gb.ru
+browser: chrome
+sleep_time: 3
+
+email: Fred123
+password: 17fe38c02d
+
+title: It's title
+description: It's description
+content: It's content
