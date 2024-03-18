@@ -4,3 +4,8 @@ sleep_time: 1
 implicitly_wait: 3
 email: Fred123
 password: 17fe38c02d
+
+title: Test
+description: Testik Test
+content: Testik Testikov Test
+

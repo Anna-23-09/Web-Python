@@ -1,13 +1,22 @@
+import os
+
 from testpage import OperationsHelper
 import logging
 import yaml
+from testpage import TestSearchLocators
+
+current_dir = os.path.abspath(os.path.dirname(__name__))
+file_path = os.path.join(current_dir, 'img.jpg')
+
+with open('testdata.yaml') as f:
+    testdata = yaml.safe_load(f)
 """
 username: Fred123
 password: 17fe38c02d
 """
 
 
-def test_step_1(browser):
+def test_unsuccessful_login(browser):
     logging.info("Test1 Starting")
     testpage = OperationsHelper(browser)
     testpage.go_to_site()
@@ -22,26 +31,26 @@ def test_successful_login(browser):
     testpage = OperationsHelper(browser)
     testpage.go_to_site()
     testpage.enter_login(testdata['email'])
-    testpage.enter_pass("test")
+    testpage.enter_pass(testdata['password'])
     testpage.click_login_button()
-    assert testpage.get_error_text() == "401"
+
+    hello_text = testpage.find_element(TestSearchLocators.LOCATOR_HELLO_TEXT)
+    assert f"Hello, {testdata['email']}" == hello_text
 
 
-# def test_step_2(email_input, password_input, error, submit, error_result, site):
-#     input1 = site.find_element("xpath", email_input)
-#     input1.send_keys(testdata["email"])
-#     input2 = site.find_element("xpath", password_input)
-#     input2.send_keys(testdata["password"])
-#     btn = site.find_element("css", submit)
-#     btn.click()
-#     hello_text = site.find_element("xpath", '// *[ @ id = "app"] / main / nav / ul / li[3] / a').text
-#     assert f'Hello, {testdata["email"]}' == hello_text
-
-
-# test_step_1()
-
-# css_selector = "span.mdc-text-field__ripple"
-# print(site.get_element_property("css", css_selector, "height"))
-#
-# xpath = '//*[@id="login"]/div[1]/label/span[1]'
-# print(site.get_element_property("xpath", xpath, "color"))
+def test_user_can_create_post(browser):
+    logging.info("Test2 Starting")
+    testpage = OperationsHelper(browser)
+    testpage.go_to_site()
+    testpage.enter_login(testdata['email'])
+    testpage.enter_pass(testdata['password'])
+    testpage.click_login_button()
+    testpage.create_post_btn()
+    testpage.enter_title(testdata['title'])
+    testpage.enter_description(testdata['description'])
+    testpage.enter_content(testdata['content'])
+    testpage.attach_image(file_path)
+    testpage.save_post()
+    testpage.find_element(TestSearchLocators.LOCATOR_POST_IMAGE)
+    post_title = testpage.find_element(TestSearchLocators.LOCATOR_POST_TITLE).text
+    assert post_title == testdata['title']
