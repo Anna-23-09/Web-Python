@@ -1,0 +1,15 @@
+address: https://test-stand.gb.ru
+browser: Chrome
+sleep_time: 1
+
+login: Fred123
+pswd: 17fe38c02d
+
+
+title: It's title
+description: It's description
+content: It's content
+
+u_name: Sergey
+u_email: Sergey.T@mail.ru
+content_contact: One of them has interesting and useful things to say, but can not get their point across. In that case, you need an interpreter.
