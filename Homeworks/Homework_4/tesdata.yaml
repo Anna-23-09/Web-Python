@@ -1,0 +1,19 @@
+address: https://test-stand.gb.ru
+browser: Chrome
+sleep_time: 1
+
+login: Fred123
+pswd: 17fe38c02d
+
+title: It's Title
+description: It's Description
+content: It's Content
+
+u_name: Sergey
+u_email: Sergey.T@mail.ru
+content_contact: One of them has interesting and useful things to say, but can not get their point across. In that case, you need an interpreter.
+
+url: https://test-stand.gb.ru/gateway/login
+api_address: https://test-stand.gb.ru/api/posts
+address_post: https://test-stand.gb.ru/gateway/posts
+not_me_title: qwerty
